@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: yunikorn-configs
+  namespace: yunikorn
+data:
+  queues.yaml: |-
+    partitions:
+      - name: default
+        preemption:
+          enabled: true
+        nodesortpolicy:
+          type: binpacking
+        placementrules:
+          - name: User
+            create: true
+            parent:
+              name: Provided
+              create: false
+            filter:
+              type: allow
+              groups:
+                - groupA
+                - groupB
+          - name: Provided
+            create: true
+        queues:
+          - name: root
+            properties:
+              preemption.policy: fairshare
+            submitacl: "*"
+            queues:
+              - name: root2
+                properties:
+                  preemption.policy: fairshare
+                resources:
+                  max:
+                    memory: 1000Mi
+                    vcore: 1000m
+                queues:
+                  - name: groupA
+                    properties:
+                      preemption.policy: fairshare
+                    resources:
+                      guaranteed:
+                        memory: 500Mi
+                        vcore: 500m
+                    queues:
+                      - name: childX
+                        parent: true
+                        properties:
+                          preemption.policy: fairshare
+                        childtemplate:
+                          properties:
+                            preemption.policy: fairshare
+                            application.sort.policy: fifo
+                        resources:
+                          guaranteed:
+                            memory: 100Mi
+                            vcore: 100m
+                      - name: childY
+                        parent: true
+                        properties:
+                          preemption.policy: fairshare
+                        childtemplate:
+                          properties:
+                            preemption.policy: fairshare
+                            application.sort.policy: fifo
+                        resources:
+                          guaranteed:
+                            memory: 100Mi
+                            vcore: 100m
+                  - name: groupB
+                    parent: true
+                    properties:
+                      preemption.policy: fairshare
+                    childtemplate:
+                      properties:
+                        preemption.policy: fairshare
+                        application.sort.policy: fifo
+                    resources:
+                      guaranteed:
+                        memory: 500Mi
+                        vcore: 500m
