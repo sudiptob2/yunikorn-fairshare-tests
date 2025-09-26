@@ -17,4 +17,5 @@ All test cases in this repository use this dynamic queue pattern with `parent: t
 - **[Test Case 2: Preemption Inside Same Queue](test-case-2/)** - Preemption within the same queue with multiple applications
 - **[Test Case 3: Full Cluster Preemption](test-case-3/)** - Complex preemption when cluster is full, involving cross-group preemption
 - **[Test Case 4: Unequal Resource Distribution](test-case-4/)** - Fairshare preemption with asymmetric resource guarantees
-- **[Test Case 5: Capped by gurantee](test-case-5/)** - Interaction between guarantee-based and fairshare-based preemption
+- **[Test Case 5: Capped by Guarantee](test-case-5/)** - Fairshare preemption behavior when queue guarantees limit fair share allocation
+- **[Test Case 6: Continuous Rebalancing](test-case-6/)** - Dynamic resource reallocation when jobs come and go continuously
