@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: yunikorn-configs
+  namespace: yunikorn
+data:
+  queues.yaml: |-
+    partitions:
+      - name: default
+        placementrules:
+          - name: Provided
+            create: true
+        queues:
+          - name: root
+            properties:
+              preemption.policy: fairshare
+            submitacl: '*'
+            queues:
+              - name: ase
+                submitacl: '*'
+                parent: true
+                properties:
+                  application.sort.policy: fair
+                  preemption.policy: fairshare
+                resources:
+                  guaranteed:
+                    memory: 250Mi
+                    vcore: 15m
+                  max:
+                    memory: 350Mi
+                    vcore: 40m
+                childtemplate:
+                  properties:
+                    application.sort.policy: fair
+                    preemption.policy: fairshare
+                    preemption.delay: 2s
+                  resources:
+                    guaranteed:
+                      memory: 100Mi
+                      vcore: 5m

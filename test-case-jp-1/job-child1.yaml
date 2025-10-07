@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-child1
+  namespace: default
+  labels:
+    applicationId: "job-child1"
+    queue: "root.ase.child1"
+spec:
+  completions: 11
+  parallelism: 11
+  template:
+    metadata:
+      labels:
+        applicationId: "job-child1"
+        queue: "root.ase.child1"
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: worker
+          image: busybox
+          command: ["sh", "-c", "sleep 3600"]
+          resources:
+            requests:
+              cpu: "3m"
+              memory: "23Mi"
