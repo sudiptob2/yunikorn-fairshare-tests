@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-app3
+  namespace: default
+  labels:
+    applicationId: "job-app3"
+    queue: "root.root2.groupA.childY.namespaceB.job-app3"
+spec:
+  completions: 6
+  parallelism: 6
+  template:
+    metadata:
+      labels:
+        applicationId: "job-app3"
+        queue: "root.root2.groupA.childY.namespaceB.job-app3"
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: worker
+          image: busybox
+          command: ["sh", "-c", "sleep 3600"]
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"

@@ -19,3 +19,5 @@ All test cases in this repository use this dynamic queue pattern with `parent: t
 - **[Test Case 4: Unequal Resource Distribution](test-case-4/)** - Fairshare preemption with asymmetric resource guarantees
 - **[Test Case 5: Capped by Guarantee](test-case-5/)** - Fairshare preemption behavior when queue guarantees limit fair share allocation
 - **[Test Case 6: Continuous Rebalancing](test-case-6/)** - Dynamic resource reallocation when jobs come and go continuously
+- **[Test Case 7: Preemption with Namespace Wrappers](test-case-7/)** - Preemption within queues using namespace wrappers and dynamic queue creation with parent queues using childtemplate
+- **[Test Case 8: Unequal Guarantees and Over-Requesting](test-case-8/)** - Preemption behavior when applications request more resources than their queue's guarantee and get capped accordingly
