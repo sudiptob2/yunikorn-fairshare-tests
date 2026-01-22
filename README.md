@@ -21,3 +21,4 @@ All test cases in this repository use this dynamic queue pattern with `parent: t
 - **[Test Case 6: Continuous Rebalancing](test-case-6/)** - Dynamic resource reallocation when jobs come and go continuously
 - **[Test Case 7: Preemption with Namespace Wrappers](test-case-7/)** - Preemption within queues using namespace wrappers and dynamic queue creation with parent queues using childtemplate
 - **[Test Case 8: Unequal Guarantees and Over-Requesting](test-case-8/)** - Preemption behavior when applications request more resources than their queue's guarantee and get capped accordingly
+- **[Test Case 9: Unequal Guarantees and Over-Requesting (Prod-like Config)](test-case-9/)** - Same scenario as Test Case 8 but with production-like queue configuration including scheduler settings, placement rules, and pods/ephemeral-storage in childtemplate
